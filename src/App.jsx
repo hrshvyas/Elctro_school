@@ -1,4 +1,8 @@
 import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { motion } from "framer-motion";
 
 const courses = [
   {
@@ -13,41 +17,66 @@ const courses = [
     title: "UI/UX Design",
     description: "Master design principles, Figma, and user research methods.",
   },
+  {
+    title: "Embedded Systems",
+    description: "Understand microcontrollers, sensors, and real-time systems.",
+  },
+  {
+    title: "Total PCB Designing",
+    description: "Learn schematic capture, layout, and manufacturing techniques.",
+  },
+  {
+    title: "VLSI",
+    description: "Get into digital design, HDL, and semiconductor fundamentals.",
+  },
+  {
+    title: "Robotics",
+    description: "Build intelligent machines using programming and hardware integration.",
+  },
+  {
+    title: "ChatGPT Expert",
+    description: "Master prompt engineering and build AI applications with ChatGPT.",
+  },
 ];
 
 export default function FreeCoursesSite() {
   return (
-    <div style={{ padding: '2rem', maxWidth: '900px', margin: '0 auto' }}>
-      <header style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Free Courses for Students</h1>
-        <p style={{ color: '#6b7280' }}>
+    <div className="min-h-screen bg-gray-50 text-gray-800 p-6">
+      <header className="text-center mb-10">
+        <h1 className="text-4xl font-bold mb-2">Electro School</h1>
+        <p className="text-lg text-gray-600">
           Access quality education without any cost.
         </p>
       </header>
 
-      <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="grid grid-flow-col auto-cols-[280px] overflow-x-auto gap-6 pb-4"
+      >
         {courses.map((course, idx) => (
-          <div key={idx} style={{ border: '1px solid #e5e7eb', borderRadius: '12px', padding: '1rem', backgroundColor: '#fff' }}>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: '600' }}>{course.title}</h2>
-            <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1rem' }}>{course.description}</p>
-            <button style={{ backgroundColor: '#2563eb', color: 'white', padding: '0.5rem 1rem', borderRadius: '6px', width: '100%' }}>
-              Start Learning
-            </button>
-          </div>
+          <Card key={idx} className="rounded-2xl shadow-md p-4 min-w-[260px]">
+            <CardContent>
+              <h2 className="text-xl font-semibold mb-2">{course.title}</h2>
+              <p className="text-sm text-gray-600 mb-4">{course.description}</p>
+              <Button className="w-full">Start Learning</Button>
+            </CardContent>
+          </Card>
         ))}
-      </div>
+      </motion.div>
 
-      <section style={{ textAlign: 'center', marginTop: '3rem' }}>
-        <h3 style={{ fontSize: '1.5rem', fontWeight: '600' }}>Subscribe for Updates</h3>
-        <p style={{ color: '#6b7280', marginBottom: '1rem' }}>Get notified about new courses.</p>
-        <input placeholder="Enter your email" style={{ padding: '0.5rem', width: '250px', marginRight: '0.5rem' }} />
-        <button style={{ backgroundColor: '#2563eb', color: 'white', padding: '0.5rem 1rem', borderRadius: '6px' }}>
-          Subscribe
-        </button>
+      <section className="mt-12 text-center">
+        <h3 className="text-2xl font-semibold mb-2">Subscribe for Updates</h3>
+        <p className="text-gray-600 mb-4">Get notified about new courses.</p>
+        <div className="flex justify-center gap-2">
+          <Input placeholder="Enter your email" className="w-64" />
+          <Button>Subscribe</Button>
+        </div>
       </section>
 
-      <footer style={{ marginTop: '4rem', textAlign: 'center', color: '#9ca3af', fontSize: '0.875rem' }}>
-        &copy; 2025 FreeCourses. All rights reserved.
+      <footer className="mt-16 text-center text-gray-500 text-sm">
+        &copy; 2025 Electro School. All rights reserved.
       </footer>
     </div>
   );
